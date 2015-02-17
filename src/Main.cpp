@@ -1,7 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "AnimatedSprite.h"
 #include "SimpleAnimatedSprite.h"
 
 int main(){
