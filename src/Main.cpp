@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "SimpleAnimatedSprite.h"
+#include "Animal.h"
 
 int main(){
 	sf::Vector2i screenDimensions(480, 312);
@@ -16,9 +17,9 @@ int main(){
 	background.setTexture(backgroundTexture);
 	background.setOrigin(0.f,0.f);
 	
-	SimpleAnimatedSprite<32,32> fairy("resources/animal/cat.png");
+	Animal fairy("resources/animal/cat.png");
 	fairy.setPosition(sf::Vector2f(screenDimensions / 2));
-	fairy.setFrameRate(sf::milliseconds(200));
+//	fairy.setFrameRate(sf::milliseconds(200));
 	sf::Clock clock;
 	while(window.isOpen()){
 		sf::Event event;

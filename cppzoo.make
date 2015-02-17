@@ -43,6 +43,7 @@ endif
 
 OBJECTS := \
 	$(OBJDIR)/SimpleAnimatedSprite.o \
+	$(OBJDIR)/Animal.o \
 	$(OBJDIR)/Main.o \
 
 RESOURCES := \
@@ -105,6 +106,9 @@ $(GCH): $(PCH)
 endif
 
 $(OBJDIR)/SimpleAnimatedSprite.o: src/SimpleAnimatedSprite.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/Animal.o: src/Animal.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/Main.o: src/Main.cpp
