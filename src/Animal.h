@@ -8,6 +8,7 @@
 class Animal : public sf::Drawable{
 	SimpleAnimatedSprite<32,32> sprite_;
 	sf::Text text_;
+	
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
