@@ -17,6 +17,8 @@ public:
 	void setPosition(sf::Vector2f position);
 	void setAnimation(std::string animationName);
 	void update(sf::Time elapsedTime);
+	void operator<<(std::string& text);
+	void operator<<(const char* text);
 };
 
 #endif /* __Animal_H__ */

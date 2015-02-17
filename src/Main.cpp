@@ -36,18 +36,22 @@ int main(){
 					switch(event.key.code){
 						case sf::Keyboard::Key::Left:
 							fairy.setAnimation("left");
+							fairy << "miaou";
 							break;
 							
 						case sf::Keyboard::Key::Up:
 							fairy.setAnimation("up");
+							fairy << "chat";
 							break;
 							
 						case sf::Keyboard::Key::Right:
 							fairy.setAnimation("right");
+							fairy << "ZzZz. . .";
 							break;
 							
 						case sf::Keyboard::Key::Down:
 							fairy.setAnimation("down");
+							fairy << "oh, un chat!";
 							break;
 							
 						default:

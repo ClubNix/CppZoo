@@ -14,7 +14,16 @@ void Animal::setPosition(sf::Vector2f position){
 
 void Animal::setAnimation(std::string animationName){
 	sprite_.setAnimation(animationName);
-	text_.setString(animationName);
+}
+
+void Animal::operator<<(const char* text){
+	std::string stringText(text);
+	operator<<(stringText);
+}
+
+
+void Animal::operator<<(std::string& text){
+	text_.setString(text);
 }
 
 void Animal::update(sf::Time elapsedTime){
