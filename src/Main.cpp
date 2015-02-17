@@ -4,11 +4,10 @@
 #include "SimpleAnimatedSprite.h"
 #include "Animal.h"
 
+sf::Font font;
+
 int main(){
-	sf::Font font;
 	font.loadFromFile("resources/font/EptKazoo.ttf");
-	sf::Text text("miaou",font,20);
-	text.setColor(sf::Color::Blue);
 	sf::Vector2i screenDimensions(480, 312);
 	sf::RenderWindow window(sf::VideoMode(480, 312), "Zoo");
 	sf::Texture backgroundTexture;
@@ -66,7 +65,6 @@ int main(){
 		window.clear();
 		window.draw(background);
 		window.draw(fairy);
-		window.draw(text);
 		window.display();
 	}
 
