@@ -10,8 +10,5 @@ solution "CppZoo"
 	links({"sfml-graphics", "sfml-window", "sfml-system"})
 	--libdirs({"Driver/"})
 
-	buildoptions({"-std=c++11",
-		"-Wno-deprecated-declarations",
-		"-Wno-undefined-bool-conversion"
-	})
+	buildoptions({"-std=c++11","-Wextra"})
 	linkoptions({"-std=c++11"})
