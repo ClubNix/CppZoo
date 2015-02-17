@@ -11,13 +11,13 @@ int main(){
 	sf::Sprite background;
 	sf::Texture texture;
 	
-	window.setFramerateLimit(60);
+	window.setVerticalSyncEnabled(true);
 	
 	backgroundTexture.loadFromFile("resources/map.png");
 	background.setTexture(backgroundTexture);
 	background.setOrigin(0.f,0.f);
 	
-	SimpleAnimatedSprite fairy("resources/animal/cat.png");
+	SimpleAnimatedSprite<32,32> fairy("resources/animal/cat.png");
 	fairy.setPosition(sf::Vector2f(screenDimensions / 2));
 	fairy.setFrameRate(sf::milliseconds(200));
 	sf::Clock clock;
@@ -30,7 +30,6 @@ int main(){
 					break;
 				
 				case sf::Event::KeyPressed:
-				case sf::Event::KeyReleased:
 					switch(event.key.code){
 						case sf::Keyboard::Key::Left:
 							fairy.setAnimation("left");
@@ -51,6 +50,7 @@ int main(){
 						default:
 							break;
 					}
+					break;
 					
 				default:
 					break;
