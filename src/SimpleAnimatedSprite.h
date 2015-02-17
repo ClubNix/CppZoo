@@ -11,7 +11,10 @@ class SimpleAnimatedSprite : public sf::Sprite{
 	sf::Texture texture_;
 	std::unordered_map<std::string, Animation> frameList_;
 	unsigned currentFrame_;
+	unsigned maxFrame_;
 	std::string currentAnimation_;
+	sf::Time frameRate_; // time before next frame
+	sf::Time frameTime_; // time elapsed between two frame update
 
 private:
 	void cutSheet();
@@ -20,7 +23,8 @@ public:
 	SimpleAnimatedSprite(std::string fileName);
 	const sf::IntRect getCurrentFrame() const;
 	void setAnimation(std::string animationName);
-	void update();
+	void setFrameRate(sf::Time frameRate);
+	void update(sf::Time elapsedTime);
 };
 
 #endif /* __SimpleAnimatedSprite_H__ */

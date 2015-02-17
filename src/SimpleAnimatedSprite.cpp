@@ -8,6 +8,9 @@ SimpleAnimatedSprite::SimpleAnimatedSprite(std::string fileName){
 	setTexture(texture_);
 	currentFrame_ = 0;
 	currentAnimation_ = "down";
+	maxFrame_ = 4;
+	frameRate_ = sf::milliseconds(150);
+	frameTime_ = sf::Time::Zero;
 }
 
 void SimpleAnimatedSprite::cutSheet(){
@@ -51,9 +54,18 @@ void SimpleAnimatedSprite::setAnimation(std::string animationName){
 	}
 }
 
-void SimpleAnimatedSprite::update(){
+void SimpleAnimatedSprite::setFrameRate(sf::Time frameRate){
+	frameRate_ = frameRate;
+}
+
+void SimpleAnimatedSprite::update(sf::Time elapsedTime){
 	setTextureRect(getCurrentFrame());
-	currentFrame_++;
-	currentFrame_ %= 4;
+	frameTime_ += elapsedTime;
+	// next frame when total elapsed time exceed the frame rate
+	if(frameTime_ > frameRate_){
+		currentFrame_++;
+		currentFrame_ %= maxFrame_;
+		frameTime_ -= frameRate_;
+	}
 }
 

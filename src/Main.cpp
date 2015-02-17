@@ -17,10 +17,10 @@ int main(){
 	background.setTexture(backgroundTexture);
 	background.setOrigin(0.f,0.f);
 	
-	SimpleAnimatedSprite fairy("resources/animal/fairy.png");
+	SimpleAnimatedSprite fairy("resources/animal/cat.png");
 	fairy.setPosition(sf::Vector2f(screenDimensions / 2));
-//	sf::Clock frameClock;
-	
+	fairy.setFrameRate(sf::milliseconds(200));
+	sf::Clock clock;
 	while(window.isOpen()){
 		sf::Event event;
 		while(window.pollEvent(event)){
@@ -56,14 +56,11 @@ int main(){
 					break;
 			}
 		}
-		
-//		sf::Time frameTime = frameClock.restart();
-//		animatedSprite.play(*currentAnimation);
-//		animatedSprite.update(frameTime);
-		fairy.update();
+
+		sf::Time elapsedTime = clock.restart();
+		fairy.update(elapsedTime);
 		window.clear();
 		window.draw(background);
-//		window.draw(animatedSprite);
 		window.draw(fairy);
 		window.display();
 	}
