@@ -43,6 +43,7 @@ endif
 
 OBJECTS := \
 	$(OBJDIR)/AnimatedSprite.o \
+	$(OBJDIR)/SimpleAnimatedSprite.o \
 	$(OBJDIR)/Animation.o \
 	$(OBJDIR)/Main.o \
 
@@ -106,6 +107,9 @@ $(GCH): $(PCH)
 endif
 
 $(OBJDIR)/AnimatedSprite.o: src/AnimatedSprite.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/SimpleAnimatedSprite.o: src/SimpleAnimatedSprite.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/Animation.o: src/Animation.cpp
