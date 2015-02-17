@@ -40,18 +40,20 @@ void SimpleAnimatedSprite::cutSheet(){
 	frameList_["up"] = upAnimationList;
 }
 
-void SimpleAnimatedSprite::update(){
-	setTextureRect(getCurrentFrame());
-	currentFrame_++;
-	currentFrame_ %= 4;
-}
-
 const sf::IntRect SimpleAnimatedSprite::getCurrentFrame() const{
 	const sf::IntRect currentFrame = frameList_.at(currentAnimation_).at(currentFrame_);
 	return currentFrame;
 }
 
-//void SimpleAnimatedSprite::draw(sf::RenderTarget &target, sf::RenderStates states) const{
-//	sf::Sprite::draw(target, states);
-//}
+void SimpleAnimatedSprite::setAnimation(std::string animationName){
+	if(frameList_.count(animationName) > 0){
+		currentAnimation_ = animationName;
+	}
+}
+
+void SimpleAnimatedSprite::update(){
+	setTextureRect(getCurrentFrame());
+	currentFrame_++;
+	currentFrame_ %= 4;
+}
 

@@ -15,12 +15,12 @@ class SimpleAnimatedSprite : public sf::Sprite{
 
 private:
 	void cutSheet();
-//	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 public:
 	SimpleAnimatedSprite(std::string fileName);
-	void update();
 	const sf::IntRect getCurrentFrame() const;
+	void setAnimation(std::string animationName);
+	void update();
 };
 
 #endif /* __SimpleAnimatedSprite_H__ */

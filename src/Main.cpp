@@ -19,51 +19,41 @@ int main(){
 	
 	SimpleAnimatedSprite fairy("resources/animal/fairy.png");
 	fairy.setPosition(sf::Vector2f(screenDimensions / 2));
-//	if (!texture.loadFromFile("resources/animal/fairy.png")){
-//		std::cerr << "Failed to load spritesheet!" << std::endl;
-//		return 1;
-//	}
-//	
-//	Animation walkingAnimationDown;
-//	walkingAnimationDown.setSpriteSheet(texture);
-//	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
-//	walkingAnimationDown.addFrame(sf::IntRect(64, 0, 32, 32));
-//	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
-//	walkingAnimationDown.addFrame(sf::IntRect( 0, 0, 32, 32));
-
-//	Animation walkingAnimationLeft;
-//	walkingAnimationLeft.setSpriteSheet(texture);
-//	walkingAnimationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
-//	walkingAnimationLeft.addFrame(sf::IntRect(64, 32, 32, 32));
-//	walkingAnimationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
-//	walkingAnimationLeft.addFrame(sf::IntRect( 0, 32, 32, 32));
-
-//	Animation walkingAnimationRight;
-//	walkingAnimationRight.setSpriteSheet(texture);
-//	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
-//	walkingAnimationRight.addFrame(sf::IntRect(64, 64, 32, 32));
-//	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
-//	walkingAnimationRight.addFrame(sf::IntRect( 0, 64, 32, 32));
-
-//	Animation walkingAnimationUp;
-//	walkingAnimationUp.setSpriteSheet(texture);
-//	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
-//	walkingAnimationUp.addFrame(sf::IntRect(64, 96, 32, 32));
-//	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
-//	walkingAnimationUp.addFrame(sf::IntRect( 0, 96, 32, 32));
-//	
-//	Animation* currentAnimation = &walkingAnimationDown;
-//	
-//	AnimatedSprite animatedSprite(sf::seconds(0.2), true, false);
-//	animatedSprite.setPosition(sf::Vector2f(screenDimensions / 2));
-
 //	sf::Clock frameClock;
 	
-	while (window.isOpen()){
+	while(window.isOpen()){
 		sf::Event event;
-		while (window.pollEvent(event)){
-			if(event.type == sf::Event::Closed){
-				window.close();
+		while(window.pollEvent(event)){
+			switch(event.type){
+				case sf::Event::Closed:
+					window.close();
+					break;
+				
+				case sf::Event::KeyPressed:
+				case sf::Event::KeyReleased:
+					switch(event.key.code){
+						case sf::Keyboard::Key::Left:
+							fairy.setAnimation("left");
+							break;
+							
+						case sf::Keyboard::Key::Up:
+							fairy.setAnimation("up");
+							break;
+							
+						case sf::Keyboard::Key::Right:
+							fairy.setAnimation("right");
+							break;
+							
+						case sf::Keyboard::Key::Down:
+							fairy.setAnimation("down");
+							break;
+							
+						default:
+							break;
+					}
+					
+				default:
+					break;
 			}
 		}
 		
