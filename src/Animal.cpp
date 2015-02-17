@@ -43,6 +43,8 @@ void Animal::update(sf::Time elapsedTime){
 
 void Animal::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	target.draw(sprite_, states);
-	target.draw(text_,states);
+	if(isSayingSomething_){
+		target.draw(text_,states);
+	}
 }
 
