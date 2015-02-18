@@ -7,6 +7,8 @@ Animal::Animal(std::string path) : sprite_(path), text_("",font,20){
 	sprite_.setFrameRate(sf::milliseconds(200));
 	text_.setColor(sf::Color::Blue);
 	isSayingSomething_ = false;
+	userTick_ = sf::milliseconds(500);
+	userTickCounter_ = sf::Time::Zero;
 }
 
 void Animal::setPosition(sf::Vector2f position){
@@ -40,6 +42,12 @@ void Animal::update(sf::Time elapsedTime){
 		isSayingSomething_ = false;
 		frameCountThatSomethingIsBeingSaid_ = 0;
 	}
+	
+	userTickCounter_ += elapsedTime;
+	if(userTickCounter_ > userTick_){
+		doEveryUserTick();
+		userTickCounter_ -= userTick_;
+	}
 }
 
 void Animal::draw(sf::RenderTarget& target, sf::RenderStates states) const{
@@ -64,5 +72,12 @@ void Animal::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 		target.draw(textBubble,states);
 		target.draw(text_,states);
 	}
+}
+
+void Animal::setUserTick(sf::Time userTick){
+	userTick_ = userTick;
+}
+
+void Animal::doEveryUserTick(){
 }
 

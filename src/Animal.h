@@ -15,6 +15,8 @@ class Animal : public sf::Drawable{
 	sf::Text text_;                                //!< Drawable object for displaying text
 	bool isSayingSomething_;                       //!< true if the Animal is saying something
 	unsigned frameCountThatSomethingIsBeingSaid_;  //!< timer to count the number of frame a text is being said
+	sf::Time userTick_;                            //!< minimal time between execution of two user function
+	sf::Time userTickCounter_;                     //!< time elapsed between two call of userTick function
 	
 private:
 	/**
@@ -60,6 +62,17 @@ public:
 	 * \param text whatever the sprite must say
 	 */
 	void operator<<(const char* text);
+	
+	/**
+	 * set the value of userTick
+	 * \param userTick time between two call of user function
+	 */
+	void setUserTick(sf::Time userTick);
+	
+	/**
+	 * execute a function every userTick_ second
+	 */
+	virtual void doEveryUserTick();
 };
 
 #endif /* __Animal_H__ */
