@@ -42,7 +42,6 @@ ifeq ($(config),)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/SimpleAnimatedSprite.o \
 	$(OBJDIR)/Animal.o \
 	$(OBJDIR)/Main.o \
 
@@ -105,9 +104,6 @@ $(GCH): $(PCH)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 endif
 
-$(OBJDIR)/SimpleAnimatedSprite.o: src/SimpleAnimatedSprite.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/Animal.o: src/Animal.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
