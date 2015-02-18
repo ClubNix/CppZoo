@@ -20,7 +20,7 @@ void Animal::setAnimation(std::string animationName){
 	sprite_.setAnimation(animationName);
 }
 
-void Animal::move(int direction){
+void Animal::move(Direction direction){
 	sf::Vector2f position = sprite_.getPosition();
 	switch(direction){
 		case LEFT:

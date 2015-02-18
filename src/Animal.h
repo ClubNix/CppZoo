@@ -26,7 +26,7 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
-	enum direction{
+	enum Direction : unsigned{
 			LEFT = 0,
 			UP = 1,
 			RIGHT = 2,
@@ -56,7 +56,7 @@ public:
 	 * change the position of the sprite according to a direction.
 	 * \param direction a direction of the movinf (LEFT, UP, RIGHT, DOWN)
 	 */
-	void move(int direction);
+	void move(Direction direction);
 	
 	/**
 	 * processing loop of the sprite
