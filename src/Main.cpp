@@ -37,22 +37,22 @@ int main(){
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-			cat.setAnimation("up");
+			cat.setAnimation(Direction::Up);
 			cat.move(Direction::Up);
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-			cat.setAnimation("down");
+			cat.setAnimation(Direction::Down);
 			cat.move(Direction::Down);
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-			cat.setAnimation("right");
+			cat.setAnimation(Direction::Right);
 			cat.move(Direction::Right);
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-			cat.setAnimation("left");
+			cat.setAnimation(Direction::Left);
 			cat.move(Direction::Left);
 		}
 

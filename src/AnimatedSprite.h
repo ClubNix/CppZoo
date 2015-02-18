@@ -4,16 +4,16 @@
 #include <stdexcept>
 #include <string>
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
+#include "Direction.h"
 
 template<unsigned WIDTH, unsigned HEIGHT>
 class AnimatedSprite : public sf::Sprite{
 	using Animation = typename std::vector<sf::IntRect>;   //!< simple name for an animation set
 	sf::Texture texture_;                                  //!< reference to the spritesheet
-	std::unordered_map<std::string, Animation> frameList_; //!< all available animation set (for different direction)
+	Animation frameList_[unsigned(Direction::Size)]; //!< all available animation set (for different direction)
 	unsigned currentFrame_;                                //!< current frame being displayed
 	unsigned maxFrame_;                                    //!< maximum number of frame per animation in the spritesheet
-	std::string currentAnimation_;                         //!< direction of the sprite
+	Direction currentAnimation_;                         //!< direction of the sprite
 	sf::Time frameRate_;                                   //!< time before next frame
 	sf::Time frameTime_;                                   //!< time elapsed between two frame update
 
@@ -28,28 +28,28 @@ private:
 		downAnimationList.push_back({2*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
 		downAnimationList.push_back({1*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
 		downAnimationList.push_back({0*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
-		frameList_["down"] = downAnimationList;
+		frameList_[unsigned(Direction::Down)] = downAnimationList;
 
 		Animation leftAnimationList;
 		leftAnimationList.push_back({1*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
 		leftAnimationList.push_back({2*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
 		leftAnimationList.push_back({1*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
 		leftAnimationList.push_back({0*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
-		frameList_["left"] = leftAnimationList;
+		frameList_[unsigned(Direction::Left)] = leftAnimationList;
 
 		Animation rightAnimationList;
 		rightAnimationList.push_back({1*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
 		rightAnimationList.push_back({2*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
 		rightAnimationList.push_back({1*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
 		rightAnimationList.push_back({0*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
-		frameList_["right"] = rightAnimationList;
+		frameList_[unsigned(Direction::Right)] = rightAnimationList;
 
 		Animation upAnimationList;
 		upAnimationList.push_back({1*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
 		upAnimationList.push_back({2*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
 		upAnimationList.push_back({1*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
 		upAnimationList.push_back({0*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
-		frameList_["up"] = upAnimationList;
+		frameList_[unsigned(Direction::Up)] = upAnimationList;
 	}
 
 
@@ -66,7 +66,7 @@ public:
 		cutSheet();
 		setTexture(texture_);
 		currentFrame_ = 0;
-		currentAnimation_ = "down";
+		currentAnimation_ = Direction::Down;
 		maxFrame_ = 4;
 		frameRate_ = sf::milliseconds(150);
 		frameTime_ = sf::Time::Zero;
@@ -77,7 +77,7 @@ public:
 	 * \return current frame of of the sprite
 	 */
 	const sf::IntRect getCurrentFrame() const{
-		const sf::IntRect currentFrame = frameList_.at(currentAnimation_).at(currentFrame_);
+		const sf::IntRect currentFrame = frameList_[unsigned(currentAnimation_)].at(currentFrame_);
 		return currentFrame;
 	}
 	
@@ -85,10 +85,8 @@ public:
 	 * set a frame list for an animation
 	 * \param animationName direction of the sprite
 	 */
-	void setAnimation(std::string animationName){
-		if(frameList_.count(animationName) > 0){
-			currentAnimation_ = animationName;
-		}
+	void setAnimation(Direction animationName){
+		currentAnimation_ = animationName;
 	}
 	
 	/**

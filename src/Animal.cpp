@@ -16,7 +16,7 @@ void Animal::setPosition(sf::Vector2f position){
 	text_.setPosition({position.x-30, position.y-20});
 }
 
-void Animal::setAnimation(std::string animationName){
+void Animal::setAnimation(Direction animationName){
 	sprite_.setAnimation(animationName);
 }
 

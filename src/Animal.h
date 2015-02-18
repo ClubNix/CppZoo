@@ -44,7 +44,7 @@ public:
 	 * currently, a sprite has 4 different animation dependent of the direction the sprite is looking
 	 * \param animationName a direction for the animation ("up", "down", "left" or "right")
 	 */
-	void setAnimation(std::string animationName);
+	void setAnimation(Direction animationName);
 	
 	/**
 	 * change the position of the sprite according to a direction.
