@@ -38,22 +38,22 @@ int main(){
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
 			cat.setAnimation("up");
-			cat.move(Animal::UP);
+			cat.move(Direction::Up);
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
 			cat.setAnimation("down");
-			cat.move(Animal::DOWN);
+			cat.move(Direction::Down);
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
 			cat.setAnimation("right");
-			cat.move(Animal::RIGHT);
+			cat.move(Direction::Right);
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
 			cat.setAnimation("left");
-			cat.move(Animal::LEFT);
+			cat.move(Direction::Left);
 		}
 
 		sf::Time elapsedTime = clock.restart();

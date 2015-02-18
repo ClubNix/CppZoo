@@ -23,16 +23,16 @@ void Animal::setAnimation(std::string animationName){
 void Animal::move(Direction direction){
 	sf::Vector2f position = sprite_.getPosition();
 	switch(direction){
-		case LEFT:
+		case Direction::Left:
 			position.x--;
 			break;
-		case UP:
+		case Direction::Up:
 			position.y--;
 			break;
-		case RIGHT:
+		case Direction::Right:
 			position.x++;
 			break;
-		case DOWN:
+		case Direction::Down:
 			position.y++;
 			break;
 		default: break;

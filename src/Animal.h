@@ -2,6 +2,7 @@
 #define __Animal_H__
 
 #include "AnimatedSprite.h"
+#include "Direction.h"
 #include <string>
 #include <SFML/Graphics.hpp>
 
@@ -26,13 +27,6 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
-	enum Direction : unsigned{
-			LEFT = 0,
-			UP = 1,
-			RIGHT = 2,
-			DOWN = 3
-		};
-		
 	/**
 	 * Constructor for Animal
 	 * \param path path to a sprite sheet
