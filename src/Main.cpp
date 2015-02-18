@@ -5,11 +5,13 @@
 #include "Animal.h"
 
 sf::Font font;
+sf::FloatRect screenDimension;
 
 int main(){
 	font.loadFromFile("resources/font/EptKazoo.ttf");
-	sf::Vector2i screenDimensions(480, 312);
-	sf::RenderWindow window(sf::VideoMode(480, 312), "Zoo");
+	screenDimension.width = 480;
+	screenDimension.height = 312;
+	sf::RenderWindow window(sf::VideoMode(screenDimension.width, screenDimension.height), "Zoo");
 	sf::Texture backgroundTexture;
 	sf::Sprite background;
 	sf::Texture texture;
@@ -21,7 +23,7 @@ int main(){
 	background.setOrigin(0.f,0.f);
 	
 	Animal cat("resources/animal/cat.png");
-	cat.setPosition(sf::Vector2f(screenDimensions / 2));
+	cat.setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
 //	cat.setFrameRate(sf::milliseconds(200));
 	sf::Clock clock;
 	while(window.isOpen()){

@@ -2,12 +2,13 @@
 #include <iostream>
 
 extern sf::Font font;
+extern sf::FloatRect screenDimension;
 
 Animal::Animal(std::string path) : sprite_(path), text_("",font,20){
 	sprite_.setFrameRate(sf::milliseconds(200));
+	userTick_ = sf::milliseconds(500);
 	text_.setColor(sf::Color::Blue);
 	isSayingSomething_ = false;
-	userTick_ = sf::milliseconds(500);
 	userTickCounter_ = sf::Time::Zero;
 }
 
@@ -37,10 +38,12 @@ void Animal::move(Direction direction){
 			break;
 		default: break;
 	}
-	if(position.x > 0 and position.x < 480 - 32 and
-		position.y > 0 and position.y < 312 - 32){
-			sprite_.setPosition(position);
-		}
+	sf::IntRect currentFrame = sprite_.getCurrentFrame();
+	sf::Vector2f topLeftPointOfFrame(position);
+	sf::Vector2f bottomRightPointOfFrame(position + sf::Vector2f(currentFrame.width, currentFrame.height));
+	if(screenDimension.contains(topLeftPointOfFrame) and screenDimension.contains(bottomRightPointOfFrame)){
+		sprite_.setPosition(position);
+	}
 }
 
 void Animal::operator<<(const char* text){
