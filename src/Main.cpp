@@ -3,6 +3,7 @@
 
 #include "AnimatedSprite.h"
 #include "Animal.h"
+#include "Zoo.h"
 
 sf::Font font;
 sf::FloatRect screenDimension;
@@ -12,19 +13,12 @@ int main(){
 	screenDimension.width = 480;
 	screenDimension.height = 312;
 	sf::RenderWindow window(sf::VideoMode(screenDimension.width, screenDimension.height), "Zoo");
-	sf::Texture backgroundTexture;
-	sf::Sprite background;
-	sf::Texture texture;
-	
 	window.setVerticalSyncEnabled(true);
-	
-	backgroundTexture.loadFromFile("resources/map.png");
-	background.setTexture(backgroundTexture);
-	background.setOrigin(0.f,0.f);
-	
+
+	Zoo zoo("resources/map.png");	
 	Animal cat("resources/animal/cat.png");
 	cat.setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
-//	cat.setFrameRate(sf::milliseconds(200));
+
 	sf::Clock clock;
 	while(window.isOpen()){
 		sf::Event event;
@@ -61,7 +55,7 @@ int main(){
 		sf::Time elapsedTime = clock.restart();
 		cat.update(elapsedTime);
 		window.clear();
-		window.draw(background);
+		window.draw(zoo);
 		window.draw(cat);
 		window.display();
 	}

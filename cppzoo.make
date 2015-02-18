@@ -44,6 +44,7 @@ endif
 OBJECTS := \
 	$(OBJDIR)/Animal.o \
 	$(OBJDIR)/Main.o \
+	$(OBJDIR)/Zoo.o \
 
 RESOURCES := \
 
@@ -108,6 +109,9 @@ $(OBJDIR)/Animal.o: src/Animal.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/Main.o: src/Main.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/Zoo.o: src/Zoo.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
