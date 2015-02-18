@@ -10,9 +10,8 @@ template<int WIDTH, int HEIGHT>
 class AnimatedSprite : public sf::Sprite{
 	using Animation = typename std::vector<sf::IntRect>;   //!< simple name for an animation set
 	sf::Texture texture_;                                  //!< reference to the spritesheet
-	Animation frameList_[unsigned(Direction::Size)];       //!< all available animation set (for different direction)
-	unsigned currentFrame_;                                //!< current frame being displayed
-	unsigned maxFrame_;                                    //!< maximum number of frame per animation in the spritesheet
+	Animation frameList_[int(Direction::Size)];            //!< all available animation set (for different direction)
+	int currentFrame_;                                //!< current frame being displayed
 	Direction currentAnimation_;                           //!< direction of the sprite
 	sf::Time frameRate_;                                   //!< time before next frame
 	sf::Time frameTime_;                                   //!< time elapsed between two frame update
@@ -24,8 +23,8 @@ private:
 	void cutSheet(){
 		for(int j = 0; j < int(Direction::Size); j++){
 			Animation animationList;
-			// two times sprite at position x=1*WIDTH for smooth animation
-			for(auto i : {1,2,1,0}){
+			// two times sprite at position x=1*WIDTH for smooth looping
+			for(auto i : {0,1,2,1}){
 				animationList.push_back({i*WIDTH, j*HEIGHT, WIDTH, HEIGHT});
 			}
 			frameList_[j] = animationList;
@@ -47,7 +46,6 @@ public:
 		setTexture(texture_);
 		currentFrame_ = 0;
 		currentAnimation_ = Direction::Down;
-		maxFrame_ = 4;
 		frameRate_ = sf::milliseconds(150);
 		frameTime_ = sf::Time::Zero;
 	}
@@ -57,7 +55,7 @@ public:
 	 * \return current frame of of the sprite
 	 */
 	const sf::IntRect getCurrentFrame() const{
-		const sf::IntRect currentFrame = frameList_[unsigned(currentAnimation_)].at(currentFrame_);
+		const sf::IntRect currentFrame = frameList_[int(currentAnimation_)].at(currentFrame_);
 		return currentFrame;
 	}
 	
@@ -88,7 +86,7 @@ public:
 		// next frame when total elapsed time exceed the frame rate
 		if(frameTime_ > frameRate_){
 			currentFrame_++;
-			currentFrame_ %= maxFrame_;
+			currentFrame_ %= frameList_[int(currentAnimation_)].size();
 			frameTime_ -= frameRate_;
 		}
 	}
