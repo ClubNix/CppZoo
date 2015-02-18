@@ -70,9 +70,10 @@ public:
 	void setUserTick(sf::Time userTick);
 	
 	/**
-	 * execute a function every userTick_ second
+	 * execute a function every userTick_ second.
+	 * it's where lib user can do something
 	 */
-	virtual void doEveryUserTick();
+	virtual void userFunction();
 };
 
 #endif /* __Animal_H__ */

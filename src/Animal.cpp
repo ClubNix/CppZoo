@@ -78,6 +78,6 @@ void Animal::setUserTick(sf::Time userTick){
 	userTick_ = userTick;
 }
 
-void Animal::doEveryUserTick(){
+void Animal::userFunction(){
 }
 
