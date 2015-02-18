@@ -1,5 +1,5 @@
-#ifndef __SimpleAnimatedSprite_H__
-#define __SimpleAnimatedSprite_H__
+#ifndef __AnimatedSprite_H__
+#define __AnimatedSprite_H__
 
 #include <stdexcept>
 #include <string>
@@ -7,7 +7,7 @@
 #include <unordered_map>
 
 template<unsigned WIDTH, unsigned HEIGHT>
-class SimpleAnimatedSprite : public sf::Sprite{
+class AnimatedSprite : public sf::Sprite{
 	using Animation = typename std::vector<sf::IntRect>;   //!< simple name for an animation set
 	sf::Texture texture_;                                  //!< reference to the spritesheet
 	std::unordered_map<std::string, Animation> frameList_; //!< all available animation set (for different direction)
@@ -55,11 +55,11 @@ private:
 
 public:
 	/**
-	 * Constructor for SimpleAnimatedSprite
+	 * Constructor for AnimatedSprite
 	 * throw a runtime exception if the resources file is not found
 	 * \param fileName path to sprite sheet
 	 */
-	SimpleAnimatedSprite(std::string fileName){
+	AnimatedSprite(std::string fileName){
 		if (!texture_.loadFromFile(fileName)){
 			throw std::runtime_error("file not found");
 		}
@@ -116,5 +116,5 @@ public:
 	}
 };
 
-#endif /* __SimpleAnimatedSprite_H__ */
+#endif /* __AnimatedSprite_H__ */
 

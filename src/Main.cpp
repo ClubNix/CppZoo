@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "SimpleAnimatedSprite.h"
+#include "AnimatedSprite.h"
 #include "Animal.h"
 
 sf::Font font;

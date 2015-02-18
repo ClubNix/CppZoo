@@ -1,7 +1,7 @@
 #ifndef __Animal_H__
 #define __Animal_H__
 
-#include "SimpleAnimatedSprite.h"
+#include "AnimatedSprite.h"
 #include <string>
 #include <SFML/Graphics.hpp>
 
@@ -11,7 +11,7 @@
  * add several method (like being able to speak)
  */
 class Animal : public sf::Drawable{
-	SimpleAnimatedSprite<32,32> sprite_;           //!< Sprite of the animal (containing logic for animation)
+	AnimatedSprite<32,32> sprite_;           //!< Sprite of the animal (containing logic for animation)
 	sf::Text text_;                                //!< Drawable object for displaying text
 	bool isSayingSomething_;                       //!< true if the Animal is saying something
 	unsigned frameCountThatSomethingIsBeingSaid_;  //!< timer to count the number of frame a text is being said

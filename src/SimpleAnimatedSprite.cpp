@@ -1,6 +1,6 @@
-#include "SimpleAnimatedSprite.h"
+#include "AnimatedSprite.h"
 
-//SimpleAnimatedSprite::SimpleAnimatedSprite(std::string fileName){
+//AnimatedSprite::AnimatedSprite(std::string fileName){
 //	if (!texture_.loadFromFile(fileName)){
 //		throw std::runtime_error("file not found");
 //	}
@@ -13,7 +13,7 @@
 //	frameTime_ = sf::Time::Zero;
 //}
 
-//void SimpleAnimatedSprite::cutSheet(){
+//void AnimatedSprite::cutSheet(){
 //	Animation downAnimationList;
 //	downAnimationList.push_back({32, 0, 32, 32});
 //	downAnimationList.push_back({64, 0, 32, 32});
@@ -43,22 +43,22 @@
 //	frameList_["up"] = upAnimationList;
 //}
 
-//const sf::IntRect SimpleAnimatedSprite::getCurrentFrame() const{
+//const sf::IntRect AnimatedSprite::getCurrentFrame() const{
 //	const sf::IntRect currentFrame = frameList_.at(currentAnimation_).at(currentFrame_);
 //	return currentFrame;
 //}
 
-//void SimpleAnimatedSprite::setAnimation(std::string animationName){
+//void AnimatedSprite::setAnimation(std::string animationName){
 //	if(frameList_.count(animationName) > 0){
 //		currentAnimation_ = animationName;
 //	}
 //}
 
-//void SimpleAnimatedSprite::setFrameRate(sf::Time frameRate){
+//void AnimatedSprite::setFrameRate(sf::Time frameRate){
 //	frameRate_ = frameRate;
 //}
 
-//void SimpleAnimatedSprite::update(sf::Time elapsedTime){
+//void AnimatedSprite::update(sf::Time elapsedTime){
 //	setTextureRect(getCurrentFrame());
 //	frameTime_ += elapsedTime;
 //	// next frame when total elapsed time exceed the frame rate
