@@ -31,41 +31,29 @@ int main(){
 				case sf::Event::Closed:
 					window.close();
 					break;
-				
-				case sf::Event::KeyPressed:
-					switch(event.key.code){
-						case sf::Keyboard::Key::Left:
-							cat.setAnimation("left");
-							cat.move(Animal::LEFT);
-							//cat << "miaou";
-							break;
-							
-						case sf::Keyboard::Key::Up:
-							cat.setAnimation("up");
-							cat.move(Animal::UP);
-							//cat << "chat";
-							break;
-							
-						case sf::Keyboard::Key::Right:
-							cat.setAnimation("right");
-							cat.move(Animal::RIGHT);
-							//cat << "ZzZz. . .";
-							break;
-							
-						case sf::Keyboard::Key::Down:
-							cat.setAnimation("down");
-							cat.move(Animal::DOWN);
-							//cat << "oh, un chat!";
-							break;
-							
-						default:
-							break;
-					}
-					break;
-					
 				default:
 					break;
 			}
+		}
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
+			cat.setAnimation("up");
+			cat.move(Animal::UP);
+		}
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+			cat.setAnimation("down");
+			cat.move(Animal::DOWN);
+		}
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+			cat.setAnimation("right");
+			cat.move(Animal::RIGHT);
+		}
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+			cat.setAnimation("left");
+			cat.move(Animal::LEFT);
 		}
 
 		sf::Time elapsedTime = clock.restart();
