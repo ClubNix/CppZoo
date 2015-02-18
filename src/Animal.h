@@ -25,7 +25,12 @@ private:
 	 * draw the animal and it's text
 	 */
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+	
+	/**
+	 * draw the text bubble
+	 */
+	void drawTextBubble(sf::RenderTarget& target, sf::RenderStates states) const;
+	
 public:
 	/**
 	 * Constructor for Animal
@@ -62,14 +67,8 @@ public:
 	 * method to make the sprite talk
 	 * \param text whatever the sprite must say
 	 */
-	void operator<<(std::string& text);
+	void operator<<(std::string text);
 
-	/**
-	 * overload for C string
-	 * \param text whatever the sprite must say
-	 */
-	void operator<<(const char* text);
-	
 	/**
 	 * set the value of userTick
 	 * \param userTick time between two call of user function
