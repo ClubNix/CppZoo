@@ -8,19 +8,22 @@
 
 template<unsigned WIDTH, unsigned HEIGHT>
 class SimpleAnimatedSprite : public sf::Sprite{
-	using Animation = typename std::vector<sf::IntRect>;
-	sf::Texture texture_;
-	std::unordered_map<std::string, Animation> frameList_;
-	unsigned currentFrame_;
-	unsigned maxFrame_;
-	std::string currentAnimation_;
-	sf::Time frameRate_; // time before next frame
-	sf::Time frameTime_; // time elapsed between two frame update
+	using Animation = typename std::vector<sf::IntRect>;   //!< simple name for an animation set
+	sf::Texture texture_;                                  //!< reference to the spritesheet
+	std::unordered_map<std::string, Animation> frameList_; //!< all available animation set (for different direction)
+	unsigned currentFrame_;                                //!< current frame being displayed
+	unsigned maxFrame_;                                    //!< maximum number of frame per animation in the spritesheet
+	std::string currentAnimation_;                         //!< direction of the sprite
+	sf::Time frameRate_;                                   //!< time before next frame
+	sf::Time frameTime_;                                   //!< time elapsed between two frame update
 
 private:
-	// two times sprite at position x=32 for smooth animation
+	/**
+	 * create the list of frame for sprite sheet looking like resources/animal/cat.png
+	 */
 	void cutSheet(){
 		Animation downAnimationList;
+		// two times sprite at position x=1*WIDTH for smooth animation
 		downAnimationList.push_back({1*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
 		downAnimationList.push_back({2*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
 		downAnimationList.push_back({1*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
@@ -51,6 +54,11 @@ private:
 
 
 public:
+	/**
+	 * Constructor for SimpleAnimatedSprite
+	 * throw a runtime exception if the resources file is not found
+	 * \param fileName path to sprite sheet
+	 */
 	SimpleAnimatedSprite(std::string fileName){
 		if (!texture_.loadFromFile(fileName)){
 			throw std::runtime_error("file not found");
@@ -64,21 +72,38 @@ public:
 		frameTime_ = sf::Time::Zero;
 	}
 	
+	/**
+	 * get the frame that will be draw
+	 * \return current frame of of the sprite
+	 */
 	const sf::IntRect getCurrentFrame() const{
 		const sf::IntRect currentFrame = frameList_.at(currentAnimation_).at(currentFrame_);
 		return currentFrame;
 	}
 	
+	/**
+	 * set a frame list for an animation
+	 * \param animationName direction of the sprite
+	 */
 	void setAnimation(std::string animationName){
 		if(frameList_.count(animationName) > 0){
 			currentAnimation_ = animationName;
 		}
 	}
 	
+	/**
+	 * speed of the animation
+	 * \param frameRate minimum time between a change of frame
+	 */
 	void setFrameRate(sf::Time frameRate){
 		frameRate_ = frameRate;
 	}
 
+	/**
+	 * process sprite logic.
+	 * change the current displayed frame in respect with the sprite internal framerate
+	 * \param elapsedTime 
+	 */
 	void update(sf::Time elapsedTime){
 		setTextureRect(getCurrentFrame());
 		frameTime_ += elapsedTime;
