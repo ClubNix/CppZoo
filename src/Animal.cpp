@@ -20,6 +20,29 @@ void Animal::setAnimation(std::string animationName){
 	sprite_.setAnimation(animationName);
 }
 
+void Animal::move(int direction){
+	sf::Vector2f position = sprite_.getPosition();
+	switch(direction){
+		case LEFT:
+			position.x--;
+			break;
+		case UP:
+			position.y--;
+			break;
+		case RIGHT:
+			position.x++;
+			break;
+		case DOWN:
+			position.y++;
+			break;
+		default: break;
+	}
+	if(position.x > 0 and position.x < 480 - 32 and
+		position.y > 0 and position.y < 312 - 32){
+			sprite_.setPosition(position);
+		}
+}
+
 void Animal::operator<<(const char* text){
 	std::string stringText(text);
 	operator<<(stringText);

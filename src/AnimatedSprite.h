@@ -1,5 +1,5 @@
-#ifndef __SimpleAnimatedSprite_H__
-#define __SimpleAnimatedSprite_H__
+#ifndef __AnimatedSprite_H__
+#define __AnimatedSprite_H__
 
 #include <stdexcept>
 #include <string>
@@ -116,5 +116,5 @@ public:
 	}
 };
 
-#endif /* __SimpleAnimatedSprite_H__ */
+#endif /* __AnimatedSprite_H__ */
 

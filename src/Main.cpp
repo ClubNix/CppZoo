@@ -20,9 +20,9 @@ int main(){
 	background.setTexture(backgroundTexture);
 	background.setOrigin(0.f,0.f);
 	
-	Animal fairy("resources/animal/cat.png");
-	fairy.setPosition(sf::Vector2f(screenDimensions / 2));
-//	fairy.setFrameRate(sf::milliseconds(200));
+	Animal cat("resources/animal/cat.png");
+	cat.setPosition(sf::Vector2f(screenDimensions / 2));
+//	cat.setFrameRate(sf::milliseconds(200));
 	sf::Clock clock;
 	while(window.isOpen()){
 		sf::Event event;
@@ -35,23 +35,27 @@ int main(){
 				case sf::Event::KeyPressed:
 					switch(event.key.code){
 						case sf::Keyboard::Key::Left:
-							fairy.setAnimation("left");
-							fairy << "miaou";
+							cat.setAnimation("left");
+							cat.move(Animal::LEFT);
+							//cat << "miaou";
 							break;
 							
 						case sf::Keyboard::Key::Up:
-							fairy.setAnimation("up");
-							fairy << "chat";
+							cat.setAnimation("up");
+							cat.move(Animal::UP);
+							//cat << "chat";
 							break;
 							
 						case sf::Keyboard::Key::Right:
-							fairy.setAnimation("right");
-							fairy << "ZzZz. . .";
+							cat.setAnimation("right");
+							cat.move(Animal::RIGHT);
+							//cat << "ZzZz. . .";
 							break;
 							
 						case sf::Keyboard::Key::Down:
-							fairy.setAnimation("down");
-							fairy << "oh, un chat!";
+							cat.setAnimation("down");
+							cat.move(Animal::DOWN);
+							//cat << "oh, un chat!";
 							break;
 							
 						default:
@@ -65,10 +69,10 @@ int main(){
 		}
 
 		sf::Time elapsedTime = clock.restart();
-		fairy.update(elapsedTime);
+		cat.update(elapsedTime);
 		window.clear();
 		window.draw(background);
-		window.draw(fairy);
+		window.draw(cat);
 		window.display();
 	}
 
