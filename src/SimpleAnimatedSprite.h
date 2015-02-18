@@ -18,7 +18,7 @@ class SimpleAnimatedSprite : public sf::Sprite{
 	sf::Time frameTime_; // time elapsed between two frame update
 
 private:
-	// two times sprite at postion x=32 for smooth animation
+	// two times sprite at position x=32 for smooth animation
 	void cutSheet(){
 		Animation downAnimationList;
 		downAnimationList.push_back({1*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
