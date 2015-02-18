@@ -6,14 +6,14 @@
 #include <SFML/Graphics.hpp>
 #include "Direction.h"
 
-template<unsigned WIDTH, unsigned HEIGHT>
+template<int WIDTH, int HEIGHT>
 class AnimatedSprite : public sf::Sprite{
 	using Animation = typename std::vector<sf::IntRect>;   //!< simple name for an animation set
 	sf::Texture texture_;                                  //!< reference to the spritesheet
-	Animation frameList_[unsigned(Direction::Size)]; //!< all available animation set (for different direction)
+	Animation frameList_[unsigned(Direction::Size)];       //!< all available animation set (for different direction)
 	unsigned currentFrame_;                                //!< current frame being displayed
 	unsigned maxFrame_;                                    //!< maximum number of frame per animation in the spritesheet
-	Direction currentAnimation_;                         //!< direction of the sprite
+	Direction currentAnimation_;                           //!< direction of the sprite
 	sf::Time frameRate_;                                   //!< time before next frame
 	sf::Time frameTime_;                                   //!< time elapsed between two frame update
 
@@ -22,34 +22,14 @@ private:
 	 * create the list of frame for sprite sheet looking like resources/animal/cat.png
 	 */
 	void cutSheet(){
-		Animation downAnimationList;
-		// two times sprite at position x=1*WIDTH for smooth animation
-		downAnimationList.push_back({1*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
-		downAnimationList.push_back({2*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
-		downAnimationList.push_back({1*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
-		downAnimationList.push_back({0*WIDTH, 0*HEIGHT, WIDTH, HEIGHT});
-		frameList_[unsigned(Direction::Down)] = downAnimationList;
-
-		Animation leftAnimationList;
-		leftAnimationList.push_back({1*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
-		leftAnimationList.push_back({2*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
-		leftAnimationList.push_back({1*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
-		leftAnimationList.push_back({0*WIDTH, 1*HEIGHT, WIDTH, HEIGHT});
-		frameList_[unsigned(Direction::Left)] = leftAnimationList;
-
-		Animation rightAnimationList;
-		rightAnimationList.push_back({1*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
-		rightAnimationList.push_back({2*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
-		rightAnimationList.push_back({1*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
-		rightAnimationList.push_back({0*WIDTH, 2*HEIGHT, WIDTH, HEIGHT});
-		frameList_[unsigned(Direction::Right)] = rightAnimationList;
-
-		Animation upAnimationList;
-		upAnimationList.push_back({1*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
-		upAnimationList.push_back({2*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
-		upAnimationList.push_back({1*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
-		upAnimationList.push_back({0*WIDTH, 3*HEIGHT, WIDTH, HEIGHT});
-		frameList_[unsigned(Direction::Up)] = upAnimationList;
+		for(int j = 0; j < int(Direction::Size); j++){
+			Animation animationList;
+			// two times sprite at position x=1*WIDTH for smooth animation
+			for(auto i : {1,2,1,0}){
+				animationList.push_back({i*WIDTH, j*HEIGHT, WIDTH, HEIGHT});
+			}
+			frameList_[j] = animationList;
+		}
 	}
 
 
