@@ -45,7 +45,7 @@ void Animal::update(sf::Time elapsedTime){
 	
 	userTickCounter_ += elapsedTime;
 	if(userTickCounter_ > userTick_){
-		doEveryUserTick();
+		userFunction();
 		userTickCounter_ -= userTick_;
 	}
 }
