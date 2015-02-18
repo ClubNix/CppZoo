@@ -26,6 +26,13 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
+	enum direction{
+			LEFT = 0,
+			UP = 1,
+			RIGHT = 2,
+			DOWN = 3
+		};
+		
 	/**
 	 * Constructor for Animal
 	 * \param path path to a sprite sheet
@@ -44,7 +51,13 @@ public:
 	 * \param animationName a direction for the animation ("up", "down", "left" or "right")
 	 */
 	void setAnimation(std::string animationName);
-
+	
+	/**
+	 * change the position of the sprite according to a direction.
+	 * \param direction a direction of the movinf (LEFT, UP, RIGHT, DOWN)
+	 */
+	void move(int direction);
+	
 	/**
 	 * processing loop of the sprite
 	 * \param elapsedTime time elapsed since last frame
