@@ -25,7 +25,7 @@ void Zoo::operator<<(Animal& animal){
 	animalList_.push_back(animal);
 }
 
-Animal& Zoo::operator[](std::string animalName){
-	return animalList_[0];
+Animal& Zoo::operator[](int position){
+	return animalList_.at(position);
 }
 

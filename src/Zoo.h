@@ -18,10 +18,30 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	
 public:
+	/**
+	 * Constructor for Zoo, a container for animal
+	 * \param fileName name of the background to use
+	 */
 	Zoo(std::string fileName);
+
+	/**
+	 * update all animal in zoo
+	 * \param elapsedTime time elapsed since last frame
+	 */
 	void update(sf::Time elapsedTime);
+
+	/**
+	 * add an animal in zoo
+	 * \param animal the animal to add
+	 */
 	void operator<<(Animal& animal);
-	Animal& operator[](std::string animalName);
+
+	/**
+	 * retrieve an animal from zoo
+	 * \param position postion of animal in the zoo
+	 * \return the animal
+	 */
+	Animal& operator[](int position);
 };
 
 #endif /* __Zoo_H__ */

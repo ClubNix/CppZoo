@@ -79,7 +79,7 @@ public:
 	/**
 	 * process sprite logic.
 	 * change the current displayed frame in respect with the sprite internal framerate
-	 * \param elapsedTime 
+	 * \param elapsedTime time elapsed since last frame
 	 */
 	void update(sf::Time elapsedTime){
 		setTextureRect(getCurrentFrame());
