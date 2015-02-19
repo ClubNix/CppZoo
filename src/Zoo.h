@@ -47,13 +47,7 @@ public:
 	 * count number of animal in the zoo
 	 * \return number of animal
 	 */
-	int getAnimalCount();
-	
-	/**
-	 * give the number of animals
-	 * \return size of the zoo
-	 */
-	int size();
+	int count();
 };
 
 #endif /* __Zoo_H__ */
