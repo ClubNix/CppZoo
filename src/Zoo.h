@@ -42,6 +42,12 @@ public:
 	 * \return the animal
 	 */
 	Animal& operator[](int position);
+	
+	/**
+	 * count number of animal in the zoo
+	 * \return number of animal
+	 */
+	int getAnimalCount();
 };
 
 #endif /* __Zoo_H__ */

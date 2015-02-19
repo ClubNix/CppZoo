@@ -29,3 +29,7 @@ Animal& Zoo::operator[](int position){
 	return animalList_.at(position);
 }
 
+int Zoo::getAnimalCount(){
+	return animalList_.size();
+}
+
