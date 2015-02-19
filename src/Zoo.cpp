@@ -33,3 +33,6 @@ int Zoo::getAnimalCount(){
 	return animalList_.size();
 }
 
+int Zoo::size(){
+	return animalList_.size();
+}

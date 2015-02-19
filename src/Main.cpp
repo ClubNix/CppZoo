@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <SFML/Graphics.hpp>
 
 #include "AnimatedSprite.h"
@@ -8,9 +9,9 @@
 sf::Font font;
 sf::FloatRect screenDimension;
 
-void addAnimal(Zoo& zoo){
-	Animal chat("resources/animal/cat.png");
-	zoo << chat;
+void addAnimal(Zoo& zoo, std::string str){
+	Animal animal("resources/animal/" + str + ".png");
+	zoo << animal;
 }
 
 int main(){
@@ -20,14 +21,17 @@ int main(){
 	sf::RenderWindow window(sf::VideoMode(screenDimension.width, screenDimension.height), "Zoo");
 	window.setVerticalSyncEnabled(true);
 
-	Zoo zoo("resources/map.png");	
+	Zoo zoo("resources/map.png");
 //	Animal chat("resources/animal/cat.png");
 //	zoo << chat;
-	addAnimal(zoo);
-	Animal& cat = zoo[0];
-	cat.setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
-	
+	addAnimal(zoo, "cat");
+	addAnimal(zoo, "dog");
+	addAnimal(zoo, "fairy");
+	zoo[0].setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
+	zoo[1].setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height-32));
 	sf::Clock clock;
+	std::random_device seed;
+	std::uniform_int_distribution<int> dist(0,3);
 	while(window.isOpen()){
 		sf::Event event;
 		while(window.pollEvent(event)){
@@ -39,25 +43,29 @@ int main(){
 					break;
 			}
 		}
+		for(int i = 0; i < zoo.size(); i++){
+		
+			int randmv = dist(seed);
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-			cat.setAnimation(Direction::Up);
-			cat.move(Direction::Up);
-		}
+			if(randmv == (int)Direction::Up){
+				zoo[i].setAnimation(Direction::Up);
+				zoo[i].move(Direction::Up);
+			}
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-			cat.setAnimation(Direction::Down);
-			cat.move(Direction::Down);
-		}
+			else if(randmv == (int)Direction::Down){
+				zoo[i].setAnimation(Direction::Down);
+				zoo[i].move(Direction::Down);
+			}
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-			cat.setAnimation(Direction::Right);
-			cat.move(Direction::Right);
-		}
+			else if(randmv == (int)Direction::Right){
+				zoo[i].setAnimation(Direction::Right);
+				zoo[i].move(Direction::Right);
+			}
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-			cat.setAnimation(Direction::Left);
-			cat.move(Direction::Left);
+			else if(randmv == (int)Direction::Left){
+				zoo[i].setAnimation(Direction::Left);
+				zoo[i].move(Direction::Left);
+			}
 		}
 
 		sf::Time elapsedTime = clock.restart();

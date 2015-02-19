@@ -48,6 +48,12 @@ public:
 	 * \return number of animal
 	 */
 	int getAnimalCount();
+	
+	/**
+	 * give the number of animals
+	 * \return size of the zoo
+	 */
+	int size();
 };
 
 #endif /* __Zoo_H__ */
