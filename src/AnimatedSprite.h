@@ -11,7 +11,7 @@ class AnimatedSprite : public sf::Sprite{
 	using Animation = typename std::vector<sf::IntRect>;   //!< simple name for an animation set
 	sf::Texture texture_;                                  //!< reference to the spritesheet
 	Animation frameList_[int(Direction::Size)];            //!< all available animation set (for different direction)
-	int currentFrame_;                                //!< current frame being displayed
+	int currentFrame_;                                     //!< current frame being displayed
 	Direction currentAnimation_;                           //!< direction of the sprite
 	sf::Time frameRate_;                                   //!< time before next frame
 	sf::Time frameTime_;                                   //!< time elapsed between two frame update
@@ -48,6 +48,7 @@ public:
 		currentAnimation_ = Direction::Down;
 		frameRate_ = sf::milliseconds(150);
 		frameTime_ = sf::Time::Zero;
+		setTextureRect(getCurrentFrame());
 	}
 	
 	/**
