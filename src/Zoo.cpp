@@ -19,3 +19,7 @@ void Zoo::operator<<(Animal& animal){
 	animalList_.push_back(animal);
 }
 
+Animal& Zoo::operator[](std::string animalName){
+	return animalList_[0];
+}
+

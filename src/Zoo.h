@@ -20,6 +20,7 @@ private:
 public:
 	Zoo(std::string fileName);
 	void operator<<(Animal& animal);
+	Animal& operator[](std::string animalName);
 };
 
 #endif /* __Zoo_H__ */

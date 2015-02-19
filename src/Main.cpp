@@ -18,7 +18,8 @@ int main(){
 	Zoo zoo("resources/map.png");	
 	Animal cat("resources/animal/cat.png");
 	cat.setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
-
+	zoo << cat;
+	
 	sf::Clock clock;
 	while(window.isOpen()){
 		sf::Event event;
@@ -53,10 +54,11 @@ int main(){
 		}
 
 		sf::Time elapsedTime = clock.restart();
-		cat.update(elapsedTime);
+//		cat.update(elapsedTime);
+		zoo["cat"].update(elapsedTime);
 		window.clear();
 		window.draw(zoo);
-		window.draw(cat);
+//		window.draw(cat);
 		window.display();
 	}
 
