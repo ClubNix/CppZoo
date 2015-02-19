@@ -43,7 +43,7 @@ int main(){
 					break;
 			}
 		}
-		for(int i = 0; i < zoo.size(); i++){
+		for(int i = 0; i < zoo.count(); i++){
 		
 			int randmv = dist(seed);
 
