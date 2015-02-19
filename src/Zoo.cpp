@@ -10,5 +10,12 @@ Zoo::Zoo(std::string fileName){
 
 void Zoo::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	target.draw(background_, states);
+	for(const Animal& animal : animalList_){
+		target.draw(animal, states);
+	}
+}
+
+void Zoo::operator<<(Animal& animal){
+	animalList_.push_back(animal);
 }
 

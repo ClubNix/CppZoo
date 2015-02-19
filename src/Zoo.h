@@ -3,10 +3,12 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "Animal.h"
 
 class Zoo : public sf::Drawable{
 	sf::Texture texture_;
 	sf::Sprite background_;
+	std::vector<Animal> animalList_;
 	
 private:
 	/**
@@ -17,6 +19,7 @@ private:
 	
 public:
 	Zoo(std::string fileName);
+	void operator<<(Animal& animal);
 };
 
 #endif /* __Zoo_H__ */
