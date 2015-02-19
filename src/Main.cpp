@@ -8,6 +8,11 @@
 sf::Font font;
 sf::FloatRect screenDimension;
 
+void addAnimal(Zoo& zoo){
+	Animal chat("resources/animal/cat.png");
+	zoo << chat;
+}
+
 int main(){
 	font.loadFromFile("resources/font/EptKazoo.ttf");
 	screenDimension.width = 480;
@@ -15,9 +20,10 @@ int main(){
 	sf::RenderWindow window(sf::VideoMode(screenDimension.width, screenDimension.height), "Zoo");
 	window.setVerticalSyncEnabled(true);
 
-	Animal chat("resources/animal/cat.png");
 	Zoo zoo("resources/map.png");	
-	zoo << chat;
+//	Animal chat("resources/animal/cat.png");
+//	zoo << chat;
+	addAnimal(zoo);
 	Animal& cat = zoo[0];
 	cat.setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
 	

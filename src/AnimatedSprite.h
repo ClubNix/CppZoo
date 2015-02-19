@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <SFML/Graphics.hpp>
 #include "Direction.h"
 
@@ -34,12 +35,26 @@ private:
 
 public:
 	/**
+	 * Copy constructor
+	 * \param sprite an sprite to copy
+	 */
+	AnimatedSprite(const AnimatedSprite& sprite) : texture_(sprite.texture_){
+		cutSheet();
+		setTexture(texture_);
+		currentFrame_ = 0;
+		currentAnimation_ = Direction::Down;
+		frameRate_ = sf::milliseconds(150);
+		frameTime_ = sf::Time::Zero;
+		setTextureRect(getCurrentFrame());
+	}
+	
+	/**
 	 * Constructor for AnimatedSprite
 	 * throw a runtime exception if the resources file is not found
 	 * \param fileName path to sprite sheet
 	 */
 	AnimatedSprite(std::string fileName){
-		if (!texture_.loadFromFile(fileName)){
+		if(!texture_.loadFromFile(fileName)){
 			throw std::runtime_error("file not found");
 		}
 		cutSheet();
