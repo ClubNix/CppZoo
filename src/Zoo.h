@@ -19,6 +19,7 @@ private:
 	
 public:
 	Zoo(std::string fileName);
+	void update(sf::Time elapsedTime);
 	void operator<<(Animal& animal);
 	Animal& operator[](std::string animalName);
 };

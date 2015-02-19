@@ -8,6 +8,12 @@ Zoo::Zoo(std::string fileName){
 	background_.setOrigin(0.f,0.f);	
 }
 
+void Zoo::update(sf::Time elapsedTime){
+	for(Animal& animal : animalList_){
+		animal.update(elapsedTime);
+	}
+}
+
 void Zoo::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	target.draw(background_, states);
 	for(const Animal& animal : animalList_){
