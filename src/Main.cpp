@@ -5,12 +5,13 @@
 #include "AnimatedSprite.h"
 #include "Animal.h"
 #include "Zoo.h"
+#include "MovingAnimal.h"
 
 sf::Font font;
 sf::FloatRect screenDimension;
 
 void addAnimal(Zoo& zoo, std::string str){
-	Animal animal("resources/animal/" + str + ".png");
+	MovingAnimal animal("resources/animal/" + str + ".png");
 	zoo << animal;
 }
 
