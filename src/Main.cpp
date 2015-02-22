@@ -49,22 +49,18 @@ int main(){
 			int randmv = dist(seed);
 
 			if(randmv == (int)Direction::Up){
-				zoo[i].setAnimation(Direction::Up);
 				zoo[i].move(Direction::Up);
 			}
 
 			else if(randmv == (int)Direction::Down){
-				zoo[i].setAnimation(Direction::Down);
 				zoo[i].move(Direction::Down);
 			}
 
 			else if(randmv == (int)Direction::Right){
-				zoo[i].setAnimation(Direction::Right);
 				zoo[i].move(Direction::Right);
 			}
 
 			else if(randmv == (int)Direction::Left){
-				zoo[i].setAnimation(Direction::Left);
 				zoo[i].move(Direction::Left);
 			}
 		}
