@@ -46,6 +46,7 @@ void Animal::move(Direction direction){
 	if(screenDimension.contains(topLeftPointOfFrame) and screenDimension.contains(bottomRightPointOfFrame)){
 		sprite_.setPosition(position);
 	}
+	setAnimation(direction);
 }
 
 void Animal::operator<<(std::string text){
