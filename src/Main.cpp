@@ -1,5 +1,4 @@
 #include <iostream>
-#include <random>
 #include <SFML/Graphics.hpp>
 
 #include "AnimatedSprite.h"
@@ -11,7 +10,7 @@ sf::Font font;
 sf::FloatRect screenDimension;
 
 void addAnimal(Zoo& zoo, std::string str){
-	MovingAnimal animal("resources/animal/" + str + ".png");
+	Animal *animal = (new MovingAnimal("resources/animal/" + str + ".png"));
 	zoo << animal;
 }
 
@@ -31,8 +30,6 @@ int main(){
 	zoo[0].setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
 	zoo[1].setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height-32));
 	sf::Clock clock;
-	std::random_device seed;
-	std::uniform_int_distribution<int> dist(0,3);
 	while(window.isOpen()){
 		sf::Event event;
 		while(window.pollEvent(event)){
@@ -44,27 +41,7 @@ int main(){
 					break;
 			}
 		}
-		for(int i = 0; i < zoo.count(); i++){
 		
-			int randmv = dist(seed);
-
-			if(randmv == (int)Direction::Up){
-				zoo[i].move(Direction::Up);
-			}
-
-			else if(randmv == (int)Direction::Down){
-				zoo[i].move(Direction::Down);
-			}
-
-			else if(randmv == (int)Direction::Right){
-				zoo[i].move(Direction::Right);
-			}
-
-			else if(randmv == (int)Direction::Left){
-				zoo[i].move(Direction::Left);
-			}
-		}
-
 		sf::Time elapsedTime = clock.restart();
 		zoo.update(elapsedTime);
 		window.clear();

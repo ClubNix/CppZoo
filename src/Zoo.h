@@ -8,7 +8,7 @@
 class Zoo : public sf::Drawable{
 	sf::Texture texture_;
 	sf::Sprite background_;
-	std::vector<Animal> animalList_;
+	std::vector<Animal*> animalList_;
 	
 private:
 	/**
@@ -34,7 +34,7 @@ public:
 	 * add an animal in zoo
 	 * \param animal the animal to add
 	 */
-	void operator<<(Animal& animal);
+	void operator<<(Animal *animal);
 
 	/**
 	 * retrieve an animal from zoo
