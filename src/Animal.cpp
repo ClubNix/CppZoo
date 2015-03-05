@@ -1,4 +1,5 @@
 #include "Animal.h"
+#include "Color.h"
 #include <iostream>
 
 extern sf::Font font;
@@ -110,3 +111,6 @@ void Animal::setUserTick(sf::Time userTick){
 void Animal::userFunction(){
 }
 
+void Animal::setColor(sf::Color color){
+	sprite_.setColor(color);
+}

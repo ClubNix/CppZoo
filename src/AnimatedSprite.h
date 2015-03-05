@@ -67,7 +67,7 @@ public:
 	}
 	
 	/**
-	 * get the frame that will be draw
+	 * get the frame that will be drawn
 	 * \return current frame of of the sprite
 	 */
 	const sf::IntRect getCurrentFrame() const{
