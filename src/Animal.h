@@ -74,6 +74,12 @@ public:
 	 * \param userTick time between two call of user function
 	 */
 	void setUserTick(sf::Time userTick);
+
+	/**
+	 * sets the sprite's color
+	 * \param color color to be set
+	 */
+	void setColor(sf::Color color);
 	
 	/**
 	 * execute a function every userTick_ second.
