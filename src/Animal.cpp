@@ -11,6 +11,8 @@ Animal::Animal(std::string path) : sprite_(path), text_("",font,20){
 	text_.setColor(sf::Color::Blue);
 	isSayingSomething_ = false;
 	userTickCounter_ = sf::Time::Zero;
+	isSleeping_ = false;
+	napDuration_ = sf::Time::Zero;
 }
 
 void Animal::setPosition(sf::Vector2f position){
@@ -23,31 +25,33 @@ void Animal::setAnimation(Direction animationName){
 }
 
 void Animal::move(Direction direction){
-	sf::Vector2f position = sprite_.getPosition();
-	switch(direction){
-		case Direction::Left:
-			position.x--;
-			break;
-		case Direction::Up:
-			position.y--;
-			break;
-		case Direction::Right:
-			position.x++;
-			break;
-		case Direction::Down:
-			position.y++;
-			break;
-		default: break;
-	}
+	if(not isSleeping_){
+		sf::Vector2f position = sprite_.getPosition();
+		switch(direction){
+			case Direction::Left:
+				position.x--;
+				break;
+			case Direction::Up:
+				position.y--;
+				break;
+			case Direction::Right:
+				position.x++;
+				break;
+			case Direction::Down:
+				position.y++;
+				break;
+			default: break;
+		}
 	
-	sf::IntRect currentFrame = sprite_.getCurrentFrame();
-	sf::Vector2f topLeftPointOfFrame(position);
-	sf::Vector2f bottomRightPointOfFrame(position + sf::Vector2f(currentFrame.width, currentFrame.height));
+		sf::IntRect currentFrame = sprite_.getCurrentFrame();
+		sf::Vector2f topLeftPointOfFrame(position);
+		sf::Vector2f bottomRightPointOfFrame(position + sf::Vector2f(currentFrame.width, currentFrame.height));
 	
-	if(screenDimension.contains(topLeftPointOfFrame) and screenDimension.contains(bottomRightPointOfFrame)){
-		sprite_.setPosition(position);
+		if(screenDimension.contains(topLeftPointOfFrame) and screenDimension.contains(bottomRightPointOfFrame)){
+			sprite_.setPosition(position);
+		}
+		setAnimation(direction);
 	}
-	setAnimation(direction);
 }
 
 void Animal::operator<<(std::string text){
@@ -58,6 +62,16 @@ void Animal::operator<<(std::string text){
 
 void Animal::update(sf::Time elapsedTime){
 	sprite_.update(elapsedTime);
+	
+	if(isSleeping_){
+		napDuration_ -= elapsedTime;
+		text_.setString("zZz...");
+		if(napDuration_ <= sf::Time::Zero){
+			napDuration_ = sf::Time::Zero;
+			isSleeping_ = false;
+			text_.setString("");
+		}
+	}
 	
 	if(isSayingSomething_){
 		frameCountThatSomethingIsBeingSaid_++;
@@ -102,6 +116,10 @@ void Animal::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	if(isSayingSomething_){
 		drawTextBubble(target, states);
 	}
+	
+	if(isSleeping_){
+		drawTextBubble(target, states);
+	}
 }
 
 void Animal::setUserTick(sf::Time userTick){
@@ -114,3 +132,13 @@ void Animal::userFunction(){
 void Animal::setColor(sf::Color color){
 	sprite_.setColor(color);
 }
+
+bool Animal::isSleeping(){
+	return isSleeping_;
+}
+
+void Animal::sleep(sf::Time napDuration){
+	isSleeping_ = true;
+	napDuration_ += napDuration;
+}
+

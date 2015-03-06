@@ -40,6 +40,7 @@ int main(){
 	addAnimal(zoo, "fairy");
 	zoo[0].setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
 	zoo[1].setPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height-32));
+	zoo[0].sleep(sf::seconds(3));
 	sf::Clock clock;
 	while(window.isOpen()){
 		sf::Event event;

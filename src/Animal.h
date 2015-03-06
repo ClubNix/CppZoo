@@ -18,6 +18,8 @@ class Animal : public sf::Drawable{
 	unsigned frameCountThatSomethingIsBeingSaid_;  //!< timer to count the number of frame a text is being said
 	sf::Time userTick_;                            //!< minimal time between execution of two user function
 	sf::Time userTickCounter_;                     //!< time elapsed between two call of userTick function
+	bool isSleeping_;                              //!< true if the Animal is sleeping
+	sf::Time napDuration_;                         //!< duration of a sleeping state
 	
 private:
 	/**
@@ -80,6 +82,18 @@ public:
 	 * \param color color to be set
 	 */
 	void setColor(sf::Color color);
+	
+	/**
+	 * get sleeping state of the animal
+	 * \return true if the animal is sleeping
+	 */
+	bool isSleeping();
+
+	/**
+	 * make the animal sleep for a certain duration
+	 * \param napDuration the duration of the nap
+	 */
+	void sleep(sf::Time napDuration);
 	
 	/**
 	 * execute a function every userTick_ second.
