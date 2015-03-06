@@ -18,7 +18,8 @@ class Animal : public sf::Drawable{
 	unsigned frameCountThatSomethingIsBeingSaid_;  //!< timer to count the number of frame a text is being said
 	sf::Time userTick_;                            //!< minimal time between execution of two user function
 	sf::Time userTickCounter_;                     //!< time elapsed between two call of userTick function
-	
+	Direction currentDirection_;				   //!< direction the animal is facing
+
 private:
 	/**
 	 * drawing function.

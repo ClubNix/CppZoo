@@ -11,4 +11,3 @@ enum class Direction : int{
 };
 
 #endif /* __Direction_H__ */
-

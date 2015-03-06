@@ -11,6 +11,7 @@ Animal::Animal(std::string path) : sprite_(path), text_("",font,20){
 	text_.setColor(sf::Color::Blue);
 	isSayingSomething_ = false;
 	userTickCounter_ = sf::Time::Zero;
+	currentDirection_ = Direction::Down;
 }
 
 void Animal::setPosition(sf::Vector2f position){
@@ -24,21 +25,24 @@ void Animal::setAnimation(Direction animationName){
 
 void Animal::move(Direction direction){
 	sf::Vector2f position = sprite_.getPosition();
-	switch(direction){
-		case Direction::Left:
-			position.x--;
-			break;
-		case Direction::Up:
-			position.y--;
-			break;
-		case Direction::Right:
-			position.x++;
-			break;
-		case Direction::Down:
-			position.y++;
-			break;
-		default: break;
+	if(currentDirection_ == direction){
+		switch(direction){
+			case Direction::Left:
+				position.x = position.x - sprite_.getTextureRect().width;
+				break;
+			case Direction::Up:
+				position.y = position.y - sprite_.getTextureRect().height;
+				break;
+			case Direction::Right:
+				position.x = position.x + sprite_.getTextureRect().width;
+				break;
+			case Direction::Down:
+				position.y = position.y + sprite_.getTextureRect().height;
+				break;
+			default: break;
+		}
 	}
+	currentDirection_ = direction;
 	
 	sf::IntRect currentFrame = sprite_.getCurrentFrame();
 	sf::Vector2f topLeftPointOfFrame(position);
