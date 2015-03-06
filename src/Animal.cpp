@@ -26,34 +26,36 @@ void Animal::setAnimation(Direction animationName){
 }
 
 void Animal::move(Direction direction){
-	sf::Vector2f position = sprite_.getPosition();
-	if(currentDirection_ == direction){
-		switch(direction){
-			case Direction::Left:
-				position.x = position.x - sprite_.getTextureRect().width;
-				break;
-			case Direction::Up:
-				position.y = position.y - sprite_.getTextureRect().height;
-				break;
-			case Direction::Right:
-				position.x = position.x + sprite_.getTextureRect().width;
-				break;
-			case Direction::Down:
-				position.y = position.y + sprite_.getTextureRect().height;
-				break;
-			default: break;
+	if(not isSleeping_){
+		sf::Vector2f position = sprite_.getPosition();
+		if(currentDirection_ == direction){
+			switch(direction){
+				case Direction::Left:
+					position.x = position.x - sprite_.getTextureRect().width;
+					break;
+				case Direction::Up:
+					position.y = position.y - sprite_.getTextureRect().height;
+					break;
+				case Direction::Right:
+					position.x = position.x + sprite_.getTextureRect().width;
+					break;
+				case Direction::Down:
+					position.y = position.y + sprite_.getTextureRect().height;
+					break;
+				default: break;
+			}
 		}
-	}
-	currentDirection_ = direction;
+		currentDirection_ = direction;
 	
-	sf::IntRect currentFrame = sprite_.getCurrentFrame();
-	sf::Vector2f topLeftPointOfFrame(position);
-	sf::Vector2f bottomRightPointOfFrame(position + sf::Vector2f(currentFrame.width, currentFrame.height));
+		sf::IntRect currentFrame = sprite_.getCurrentFrame();
+		sf::Vector2f topLeftPointOfFrame(position);
+		sf::Vector2f bottomRightPointOfFrame(position + sf::Vector2f(currentFrame.width, currentFrame.height));
 	
-	if(screenDimension.contains(topLeftPointOfFrame) and screenDimension.contains(bottomRightPointOfFrame)){
-		sprite_.setPosition(position);
+		if(screenDimension.contains(topLeftPointOfFrame) and screenDimension.contains(bottomRightPointOfFrame)){
+			sprite_.setPosition(position);
+		}
+		setAnimation(direction);
 	}
-	setAnimation(direction);
 }
 
 void Animal::operator<<(std::string text){
@@ -134,3 +136,13 @@ void Animal::userFunction(){
 void Animal::setColor(sf::Color color){
 	sprite_.setColor(color);
 }
+
+bool Animal::isSleeping(){
+	return isSleeping_;
+}
+
+void Animal::sleep(sf::Time napDuration){
+	isSleeping_ = true;
+	napDuration_ += napDuration;
+}
+
