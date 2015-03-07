@@ -42,9 +42,10 @@ ifeq ($(config),)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/Zoo.o \
-	$(OBJDIR)/Main.o \
 	$(OBJDIR)/Animal.o \
+	$(OBJDIR)/Main.o \
+	$(OBJDIR)/Zoo.o \
+	$(OBJDIR)/Color.o \
 
 RESOURCES := \
 
@@ -105,13 +106,16 @@ $(GCH): $(PCH)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 endif
 
-$(OBJDIR)/Zoo.o: src/Zoo.cpp
+$(OBJDIR)/Animal.o: src/Animal.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/Main.o: src/Main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/Animal.o: src/Animal.cpp
+$(OBJDIR)/Zoo.o: src/Zoo.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/Color.o: src/Color.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
