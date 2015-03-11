@@ -69,7 +69,7 @@ public:
 	
 	AnimatedSprite& operator= (const AnimatedSprite &sprite){
 	    if (this != &sprite){
-		 	setTexture(sprite.texture_);
+		 	texture_ = sprite.texture_;
 			currentFrame_ = sprite.currentFrame_;
 			currentAnimation_ = sprite.currentAnimation_;
 			frameRate_ = sprite.frameRate_;

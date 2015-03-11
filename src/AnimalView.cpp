@@ -8,7 +8,6 @@ AnimalView::~AnimalView(){}
 void AnimalView::update(sf::Text text, AnimatedSprite<32,32> sprite){
 	text_ = text;
 	sprite_ = sprite;
-	// sprite_.setPositixon(sprite.getPosition());
 }
 
 void AnimalView::drawTextBubble(sf::RenderTarget& target, sf::RenderStates states) const{
