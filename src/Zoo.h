@@ -3,12 +3,18 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "Animal.h"
+#include "AnimalModel.h"
+#include "AnimalControler.h"
+#include "AnimalView.h"
 
+
+/**
+ * a Zoo is a nice place for animals to live in
+ */
 class Zoo : public sf::Drawable{
 	sf::Texture texture_;
 	sf::Sprite background_;
-	std::vector<Animal*> animalList_;
+	std::vector<AnimalControler*> animalControlerList_;
 	
 private:
 	/**
@@ -34,14 +40,14 @@ public:
 	 * add an animal in zoo
 	 * \param animal the animal to add
 	 */
-	void operator<<(Animal *animal);
+	void operator<<(AnimalControler *animalControler);
 
 	/**
 	 * retrieve an animal from zoo
 	 * \param position postion of animal in the zoo
 	 * \return the animal
 	 */
-	Animal& operator[](int position);
+	AnimalControler& operator[](int position);
 	
 	/**
 	 * count number of animal in the zoo

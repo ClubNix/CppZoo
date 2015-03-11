@@ -41,11 +41,12 @@ public:
 	AnimatedSprite(const AnimatedSprite& sprite) : texture_(sprite.texture_){
 		cutSheet();
 		setTexture(texture_);
-		currentFrame_ = 0;
-		currentAnimation_ = Direction::Down;
-		frameRate_ = sf::milliseconds(150);
-		frameTime_ = sf::Time::Zero;
+		currentFrame_ = sprite.currentFrame_;
+		currentAnimation_ = sprite.currentAnimation_;
+		frameRate_ = sprite.frameRate_;
+		frameTime_ = sprite.frameTime_;
 		setTextureRect(getCurrentFrame());
+		setPosition(sprite.getPosition());
 	}
 	
 	/**
@@ -66,6 +67,19 @@ public:
 		setTextureRect(getCurrentFrame());
 	}
 	
+	AnimatedSprite& operator= (const AnimatedSprite &sprite){
+	    if (this != &sprite){
+		 	setTexture(sprite.texture_);
+			currentFrame_ = sprite.currentFrame_;
+			currentAnimation_ = sprite.currentAnimation_;
+			frameRate_ = sprite.frameRate_;
+			frameTime_ = sprite.frameTime_;
+			setTextureRect(getCurrentFrame());
+			setPosition(sprite.getPosition());
+		}
+	    return *this;
+	}
+	
 	/**
 	 * get the frame that will be drawn
 	 * \return current frame of of the sprite
@@ -75,6 +89,11 @@ public:
 		return currentFrame;
 	}
 	
+	int getFrame()const{
+		int i = currentFrame_;
+		return i;
+	}
+
 	/**
 	 * set a frame list for an animation
 	 * \param animationName direction of the sprite

@@ -9,26 +9,26 @@ Zoo::Zoo(std::string fileName){
 }
 
 void Zoo::update(sf::Time elapsedTime){
-	for(Animal *animal : animalList_){
-		animal->update(elapsedTime);
+	for(AnimalControler *animalControler : animalControlerList_){
+		animalControler->update(elapsedTime);
 	}
 }
 
 void Zoo::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	target.draw(background_, states);
-	for(Animal *animal : animalList_){
-		target.draw(*animal, states);
+	for(AnimalControler *animalControler : animalControlerList_){
+		animalControler->draw(target, states);
 	}
 }
 
-void Zoo::operator<<(Animal *animal){
-	animalList_.push_back(animal);
+void Zoo::operator<<(AnimalControler *animalControler){
+	animalControlerList_.push_back(animalControler);
 }
 
-Animal& Zoo::operator[](int position){
-	return *animalList_.at(position);
+AnimalControler& Zoo::operator[](int position){
+	return *animalControlerList_.at(position);
 }
 
 int Zoo::count(){
-	return animalList_.size();
+	return animalControlerList_.size();
 }
