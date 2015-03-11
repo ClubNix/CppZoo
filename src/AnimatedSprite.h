@@ -38,7 +38,7 @@ public:
 	 * Copy constructor
 	 * \param sprite an sprite to copy
 	 */
-	AnimatedSprite(const AnimatedSprite& sprite) : texture_(sprite.texture_){
+	AnimatedSprite(const AnimatedSprite& sprite) : Sprite(), texture_(sprite.texture_){
 		cutSheet();
 		setTexture(texture_);
 		currentFrame_ = sprite.currentFrame_;
