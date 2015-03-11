@@ -42,11 +42,12 @@ ifeq ($(config),)
 endif
 
 OBJECTS := \
+	$(OBJDIR)/AnimalControler.o \
+	$(OBJDIR)/AnimalModel.o \
 	$(OBJDIR)/Main.o \
 	$(OBJDIR)/AnimalView.o \
 	$(OBJDIR)/Zoo.o \
-	$(OBJDIR)/AnimalControler.o \
-	$(OBJDIR)/AnimalModel.o \
+	$(OBJDIR)/Color.o \
 
 RESOURCES := \
 
@@ -107,6 +108,12 @@ $(GCH): $(PCH)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 endif
 
+$(OBJDIR)/AnimalControler.o: src/AnimalControler.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/AnimalModel.o: src/AnimalModel.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/Main.o: src/Main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -116,10 +123,7 @@ $(OBJDIR)/AnimalView.o: src/AnimalView.cpp
 $(OBJDIR)/Zoo.o: src/Zoo.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/AnimalControler.o: src/AnimalControler.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/AnimalModel.o: src/AnimalModel.cpp
+$(OBJDIR)/Color.o: src/Color.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 

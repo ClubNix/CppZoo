@@ -31,6 +31,7 @@ int main(){
 	zoo[0].setAnimalPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
 	zoo[1].setAnimalPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height-32));
 	zoo[0].sleep(sf::seconds(3));
+	zoo[1].setAnimalColor(Color::Red);
 	sf::Clock clock;
 	while(window.isOpen()){
 		sf::Event event;
