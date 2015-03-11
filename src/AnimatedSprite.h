@@ -47,6 +47,7 @@ public:
 		frameTime_ = sprite.frameTime_;
 		setTextureRect(getCurrentFrame());
 		setPosition(sprite.getPosition());
+		setColor(sprite.getColor());
 	}
 	
 	/**
@@ -76,6 +77,7 @@ public:
 			frameTime_ = sprite.frameTime_;
 			setTextureRect(getCurrentFrame());
 			setPosition(sprite.getPosition());
+			setColor(sprite.getColor());
 		}
 	    return *this;
 	}
