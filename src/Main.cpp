@@ -6,51 +6,70 @@
 #include "Zoo.h"
 #include "MovingAnimalControler.h"
 #include "Color.h"
+#include "EventManager.h"
 
-sf::Font font;
-sf::FloatRect screenDimension;
+sf::Font font_;
+sf::FloatRect screenDimension_;
+sf::RenderWindow *window_;
 
 void addAnimalControler(Zoo& zoo, std::string str){
 	AnimalControler *movingAnimalControler = new MovingAnimalControler("resources/animal/" + str + ".png");
 	zoo << movingAnimalControler;
 }
 
-int main(){
-	font.loadFromFile("resources/font/EptKazoo.ttf");
-	screenDimension.width = 480;
-	screenDimension.height = 312;
-	sf::RenderWindow window(sf::VideoMode(screenDimension.width, screenDimension.height), "Zoo");
-	window.setVerticalSyncEnabled(true);
+void setup(){
+	font_.loadFromFile("resources/font/EptKazoo.ttf");
+	screenDimension_.width = 480;
+	screenDimension_.height = 312;
+	window_ = new sf::RenderWindow(sf::VideoMode(screenDimension_.width, screenDimension_.height), "Zoo");
+	window_->setVerticalSyncEnabled(true);
+}
 
-	Zoo zoo("resources/map.png");
-//	AnimalControler chat("resources/AnimalControler/cat.png");
-//	zoo << chat;
+void processInput(){
+	sf::Event event;
+	EventManager manager;
+
+	while(window_->pollEvent(event)){
+		manager.manageEvent(window_, event);
+	}
+}
+
+void render(Zoo zoo){
+	window_->clear();
+	window_->draw(zoo);
+	window_->display();
+}
+
+Zoo & populateZoo(Zoo &zoo){
 	addAnimalControler(zoo, "cat");
 	addAnimalControler(zoo, "dog");
 	addAnimalControler(zoo, "fairy");
-	zoo[0].setAnimalPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height/2));
-	zoo[1].setAnimalPosition(sf::Vector2f(screenDimension.width/2, screenDimension.height-32));
+	zoo[0].setAnimalPosition(sf::Vector2f(screenDimension_.width/2, screenDimension_.height/2));
+	zoo[1].setAnimalPosition(sf::Vector2f(screenDimension_.width/2, screenDimension_.height-32));
 	zoo[0].sleep(sf::seconds(3));
 	zoo[1].setAnimalColor(Color::Red);
+
+	return zoo;
+}
+
+int main(){
+	setup();
+	EventManager eventManager();
+	Zoo zoo("resources/map.png");
+//	AnimalControler chat("resources/AnimalControler/cat.png");
+//	zoo << chat;
+	zoo = populateZoo(zoo);
+
 	sf::Clock clock;
-	while(window.isOpen()){
-		sf::Event event;
-		while(window.pollEvent(event)){
-			switch(event.type){
-				case sf::Event::Closed:
-					window.close();
-					break;
-				default:
-					break;
-			}
-		}
-		
+
+	while(window_->isOpen()){
 		sf::Time elapsedTime = clock.restart();
+		processInput();
 		zoo.update(elapsedTime);
-		window.clear();
-		window.draw(zoo);
-		window.display();
+		render(zoo);
 	}
 
+	/* nb: so far the window can still be restored */
+	delete window_;
 	return 0;
 }

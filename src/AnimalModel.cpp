@@ -2,9 +2,9 @@
 #include "Color.h"
 #include <iostream>
 
-extern sf::Font font;
+extern sf::Font font_;
 
-AnimalModel::AnimalModel(std::string path) : sprite_(path), text_("",font,20){
+AnimalModel::AnimalModel(std::string path) : sprite_(path), text_("",font_,20){
 	sprite_.setFrameRate(sf::milliseconds(200));
 	text_.setColor(sf::Color::Blue);
 	isTalking_ = false;

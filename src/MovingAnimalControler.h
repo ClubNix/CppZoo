@@ -4,7 +4,7 @@
 #include <random>
 #include "Direction.h"
 
-extern sf::FloatRect screenDimension;
+extern sf::FloatRect screenDimension_;
 
 /**
  * A moving animal controler allows an animal to move
@@ -56,7 +56,7 @@ public:
 			sf::Vector2f topLeftPointOfFrame(position);
 			sf::Vector2f bottomRightPointOfFrame(position + sf::Vector2f(currentFrame.width, currentFrame.height));
 		
-			if(screenDimension.contains(topLeftPointOfFrame) and screenDimension.contains(bottomRightPointOfFrame)){
+			if(screenDimension_.contains(topLeftPointOfFrame) and screenDimension_.contains(bottomRightPointOfFrame)){
 				model_.setPosition(position);
 			}
 			model_.setSpriteAnimation(direction);
